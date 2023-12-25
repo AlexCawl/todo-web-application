@@ -8,7 +8,7 @@
       rel="stylesheet" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo list</title>
+    <title>ToDo App</title>
     <style>
         .app {
             visibility: hidden;
@@ -21,14 +21,13 @@
 <body class='light-theme'>
 <div class="app container">
     <header>
-        <h1>ToDo List Application</h1>
-        <!--<button id="sortBtn" type="button">Sort</button>-->
-    </header>
-    <main>
+        <h1>ToDo Web Application</h1>
         <section class="add-todo">
             <button class="main-btn light-theme" id="addBtn" type="button">Create todo</button>
             <button class="main-btn light-theme" id="themeBtn" type="button">Change theme</button>
         </section>
+    </header>
+    <main>
         <section class="todo-list"></section>
         <button class="main-btn light-theme" id="loadBtn" type="button">Load todo</button>
     </main>
@@ -46,7 +45,7 @@
               d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z" />
         </svg>
         <div class="modal_content">
-            <div class="modal__title">Добавлене todo</div>
+            <div class="modal__title">Добавление todo</div>
             <form class="modal__main" id="addForm">
                 <label class="modal__control label_light-theme"
                 >Автор:</label
@@ -135,7 +134,6 @@
             </form>
         </div>
     </div>
-
 </div>
 </body>
 </html>

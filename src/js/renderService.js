@@ -1,14 +1,13 @@
 export class RenderService {
-    constructor(todoService, modalService) {
+    constructor(pageService, modalService) {
         this.modalService = modalService;
-        this.todoService = todoService;
-        document.getElementsByClassName('app');
+        this.pageService = pageService;
         this.btn = document.getElementById('addBtn');
         this.btn.addEventListener('click', (e) => this._onOpenModal(e));
     }
 
     fetchFirstTodo() {
-        this.todoService.loadTodos();
+        this.pageService.loadTodos();
     }
 
     _onOpenModal() {

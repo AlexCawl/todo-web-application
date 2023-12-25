@@ -49,6 +49,8 @@ export class PageService {
 
         this.denyDelBtn = document.querySelector('.deny-btn');
         this.denyDelBtn.addEventListener('click', this.closeDel.bind(this));
+
+        this.initTheme()
     }
 
     addTodo(number, userId, title, description) {
@@ -218,18 +220,8 @@ export class PageService {
         this.overlay.classList.remove('active');
     }
 
-    changeTheme() {
-        let oldTheme, newTheme;
-        if (localStorage.theme === 'light-theme') {
-            localStorage.theme = 'dark-theme';
-            oldTheme = 'light-theme';
-            newTheme = 'dark-theme';
-        } else {
-            localStorage.theme = 'light-theme';
-            oldTheme = 'dark-theme';
-            newTheme = 'light-theme';
-        }
-
+    setTheme(oldTheme, newTheme) {
+        localStorage.theme = newTheme;
         document.body.className = newTheme;
         document.querySelectorAll('.main-btn').forEach((item) => {
             item.classList.add(newTheme);
@@ -241,8 +233,6 @@ export class PageService {
             item.children[0].children[0].children[0].classList.add(newTheme); // Button Star
             item.children[0].children[0].children[0].classList.remove(oldTheme); // Button Star
         });
-
-        // Upd & create forms
         document.querySelectorAll(`.label_${oldTheme}`).forEach((item) => {
             console.log(item);
             item.classList.add(`label_${newTheme}`);
@@ -252,6 +242,30 @@ export class PageService {
             item.classList.add(`modal_${newTheme}`);
             item.classList.remove(`modal_${oldTheme}`);
         });
+    }
+
+    initTheme() {
+        let oldTheme, newTheme;
+        if (localStorage.theme === 'dark-theme') {
+            oldTheme = 'light-theme';
+            newTheme = 'dark-theme';
+        } else {
+            oldTheme = 'dark-theme';
+            newTheme = 'light-theme';
+        }
+        this.setTheme(oldTheme, newTheme)
+    }
+
+    changeTheme() {
+        let oldTheme, newTheme;
+        if (localStorage.theme === 'dark-theme') {
+            oldTheme = 'dark-theme';
+            newTheme = 'light-theme';
+        } else {
+            oldTheme = 'light-theme';
+            newTheme = 'dark-theme';
+        }
+        this.setTheme(oldTheme, newTheme)
     }
 
     _onUpdate(e) {
