@@ -23,13 +23,13 @@ export class ModalService {
 
     _createSelect() {
         const select = document.querySelectorAll('.authorSelect');
-        document.querySelectorAll('.authorSelect').forEach(item => {
+        document.querySelectorAll('.authorSelect').forEach((item) => {
             for (let i = 1; i < 11; i++) {
                 const option = document.createElement('option');
                 this.api.fetchUser(i).then((res) => {
                     option.value = i.toString();
                     option.text = res.username;
-                })
+                });
                 item.add(option);
             }
         });
@@ -62,7 +62,12 @@ export class ModalService {
         }
 
         this.api.create(formData).then((data) => {
-            this.todoService.addTodo(this.todoService._getLastId(), data.userId, data.title, data.content);
+            this.todoService.addTodo(
+                this.todoService._getLastId(),
+                data.userId,
+                data.title,
+                data.content
+            );
         });
         form.reset();
         this.close();

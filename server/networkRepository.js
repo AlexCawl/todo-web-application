@@ -1,10 +1,14 @@
 export class NetworkRepository {
     fetchAllTodos() {
-        return fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json());
+        return fetch('https://jsonplaceholder.typicode.com/posts').then((res) =>
+            res.json()
+        );
     }
 
     fetchUser(userId) {
-        return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`).then((res) => res.json());
+        return fetch(
+            `https://jsonplaceholder.typicode.com/users/${userId}`
+        ).then((res) => res.json());
     }
 
     create(data) {
@@ -33,7 +37,7 @@ export class NetworkRepository {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         }).then((res) => res.json());
     }
 }

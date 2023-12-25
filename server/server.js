@@ -1,7 +1,11 @@
 import http from 'http';
-import {Router} from "./router.js";
-import {LocalRepository} from "./localRepository.js";
-import {defaultErrorResponseHandler, defaultOkResponseHandler, getRequestDate} from "./helper.js";
+import {Router} from './router.js';
+import {LocalRepository} from './localRepository.js';
+import {
+    defaultErrorResponseHandler,
+    defaultOkResponseHandler,
+    getRequestDate,
+} from './helper.js';
 
 const todoRepository = new LocalRepository();
 const router = new Router();

@@ -7,15 +7,19 @@ export class RenderService {
         this.btn.addEventListener('click', (e) => this._onOpenModal(e));
     }
 
-
     fetchFirstTodo() {
         this.todoService.loadTodos();
     }
 
     _onOpenModal() {
-        if ((+localStorage['currentPage'] + 1) * (+localStorage['cardsOnPage']) < 100) {
-            console.log(+localStorage['currentPage'] * (+localStorage['cardsOnPage']))
-            alert("Load all cards!");
+        if (
+            (+localStorage['currentPage'] + 1) * +localStorage['cardsOnPage'] <
+            100
+        ) {
+            console.log(
+                +localStorage['currentPage'] * +localStorage['cardsOnPage']
+            );
+            alert('Load all cards!');
         } else {
             this.modalService.open();
         }

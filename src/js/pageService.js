@@ -1,5 +1,5 @@
-import '../node_modules/normalize.css/normalize.css';
-import './style.css';
+import '../../node_modules/normalize.css/normalize.css';
+import '../css/style.css';
 
 export class PageService {
     toDoList;
@@ -42,22 +42,35 @@ export class PageService {
         this.submitUpdBtn.addEventListener('click', this._onUpdate.bind(this));
 
         this.confirmDelBtn = document.querySelector('.confirm-btn');
-        this.confirmDelBtn.addEventListener('click', this._handleRemove.bind(this));
+        this.confirmDelBtn.addEventListener(
+            'click',
+            this._handleRemove.bind(this)
+        );
 
         this.denyDelBtn = document.querySelector('.deny-btn');
         this.denyDelBtn.addEventListener('click', this.closeDel.bind(this));
     }
 
     addTodo(number, userId, title, description) {
-        this.toDoList.append(this._createTodo(number, userId, title, description));
+        this.toDoList.append(
+            this._createTodo(number, userId, title, description)
+        );
     }
 
     loadTodos() {
-        this.api.fetchAllTodos().then(todos => {
-            todos.forEach(todo => {
-                if (todo.id > +localStorage['currentPage'] * (+localStorage['cardsOnPage']) &&
-                    todo.id <= (+localStorage['currentPage'] + 1) * (+localStorage['cardsOnPage']) &&
-                    +localStorage['currentPage'] * (+localStorage['cardsOnPage']) <= 100) {
+        this.api.fetchAllTodos().then((todos) => {
+            todos.forEach((todo) => {
+                if (
+                    todo.id >
+                        +localStorage['currentPage'] *
+                            +localStorage['cardsOnPage'] &&
+                    todo.id <=
+                        (+localStorage['currentPage'] + 1) *
+                            +localStorage['cardsOnPage'] &&
+                    +localStorage['currentPage'] *
+                        +localStorage['cardsOnPage'] <=
+                        100
+                ) {
                     this.addTodo(todo.id, todo.userId, todo.title, todo.body);
                 }
             });
@@ -71,7 +84,7 @@ export class PageService {
         const currentTheme = localStorage['theme'];
         container.classList.add('todo-list__item');
         container.classList.add('card');
-        container.classList.add(localStorage.getItem('theme'))
+        container.classList.add(localStorage.getItem('theme'));
 
         container.cardId = number;
         container.userId = userId;
@@ -93,7 +106,7 @@ export class PageService {
         const numberStar = document.createElement('div');
         numberStar.append(btnStar);
         numberStar.append(numberEl);
-        numberStar.classList.add("number__container")
+        numberStar.classList.add('number__container');
 
         const titleEl = document.createElement('h3');
         titleEl.append(document.createTextNode(title));
@@ -118,12 +131,18 @@ export class PageService {
         footer.classList.add('card__footer');
 
         const authorEl = document.createElement('i');
-        this.api.fetchUser(userId).then((res) => authorEl.append(document.createTextNode(`Author: ${res.username}`)));
+        this.api
+            .fetchUser(userId)
+            .then((res) =>
+                authorEl.append(
+                    document.createTextNode(`Author: ${res.username}`)
+                )
+            );
         authorEl.classList.add('card__author');
 
         const btnUpd = document.createElement('button');
         btnUpd.append(document.createTextNode('Edit'));
-        btnUpd.classList.add('card__update')
+        btnUpd.classList.add('card__update');
         btnUpd.classList.add('main-btn');
         btnUpd.classList.add(currentTheme);
 
@@ -144,23 +163,30 @@ export class PageService {
         this.card = event.target.parentElement.parentElement.parentElement;
         this.toDoList = this.card.parentElement;
         const cardId = this.card.cardId;
-        localStorage[cardId] = (localStorage[cardId] === '1') ? 0 : 1;
-        (localStorage[cardId] === '1') ? event.target.classList.add("button__active") : event.target.classList.remove("button__active");
+        localStorage[cardId] = localStorage[cardId] === '1' ? 0 : 1;
+        localStorage[cardId] === '1'
+            ? event.target.classList.add('button__active')
+            : event.target.classList.remove('button__active');
 
         let sortedArray = Array.prototype.slice.call(this.toDoList.children, 0);
         sortedArray.sort(function (a, b) {
-            return localStorage[a.cardId] === localStorage[b.cardId] ? a.cardId - b.cardId : localStorage[b.cardId] - localStorage[a.cardId];
+            return localStorage[a.cardId] === localStorage[b.cardId]
+                ? a.cardId - b.cardId
+                : localStorage[b.cardId] - localStorage[a.cardId];
         });
         this.toDoList.innerHTML = '';
-        sortedArray.forEach(item => this.toDoList.append(item));
+        sortedArray.forEach((item) => this.toDoList.append(item));
     }
 
     updateTodo(title, content, userId) {
         this.card.userId = userId;
         this.card.getElementsByClassName('card__title')[0].innerText = title;
-        this.card.getElementsByClassName('card__description')[0].innerText = content;
+        this.card.getElementsByClassName('card__description')[0].innerText =
+            content;
         this.api.fetchUser(userId).then((res) => {
-            this.card.getElementsByClassName('card__author')[0].innerText = `Author: ${res.username}`
+            this.card.getElementsByClassName(
+                'card__author'
+            )[0].innerText = `Author: ${res.username}`;
         });
     }
 
@@ -178,15 +204,12 @@ export class PageService {
         this.card = event.target.parentElement.parentElement;
         this.updateForm.classList.add('active');
         this.overlay.classList.add('active');
-        document.getElementById("updForm")
-            .elements['userId']
-            .value = this.card.userId;
-        document.getElementById("updForm")
-            .elements['title']
-            .value = this.card.getElementsByClassName('card__title')[0].innerText;
-        document.getElementById("updForm")
-            .elements['content']
-            .value = this.card.getElementsByClassName('card__description')[0].innerText;
+        document.getElementById('updForm').elements['userId'].value =
+            this.card.userId;
+        document.getElementById('updForm').elements['title'].value =
+            this.card.getElementsByClassName('card__title')[0].innerText;
+        document.getElementById('updForm').elements['content'].value =
+            this.card.getElementsByClassName('card__description')[0].innerText;
     }
 
     closeUpd() {
@@ -208,11 +231,11 @@ export class PageService {
         }
 
         document.body.className = newTheme;
-        document.querySelectorAll(".main-btn").forEach(item => {
+        document.querySelectorAll('.main-btn').forEach((item) => {
             item.classList.add(newTheme);
             item.classList.remove(oldTheme);
         });
-        document.querySelectorAll('.todo-list__item').forEach(item => {
+        document.querySelectorAll('.todo-list__item').forEach((item) => {
             item.classList.add(newTheme);
             item.classList.remove(oldTheme);
             item.children[0].children[0].children[0].classList.add(newTheme); // Button Star
@@ -220,22 +243,21 @@ export class PageService {
         });
 
         // Upd & create forms
-        document.querySelectorAll(`.label_${oldTheme}`).forEach(item => {
+        document.querySelectorAll(`.label_${oldTheme}`).forEach((item) => {
             console.log(item);
             item.classList.add(`label_${newTheme}`);
             item.classList.remove(`label_${oldTheme}`);
-        })
-        document.querySelectorAll(`.modal_${oldTheme}`).forEach(item => {
+        });
+        document.querySelectorAll(`.modal_${oldTheme}`).forEach((item) => {
             item.classList.add(`modal_${newTheme}`);
             item.classList.remove(`modal_${oldTheme}`);
-        })
-
+        });
     }
 
     _onUpdate(e) {
         e.preventDefault();
         const formData = {};
-        const form = document.getElementById("updForm");
+        const form = document.getElementById('updForm');
 
         Array.from(form.elements)
             .filter((item) => !!item.name)
@@ -251,7 +273,7 @@ export class PageService {
             this.updateTodo(data.title, data.content, data.userId);
         });
 
-//        form.reset();
+        //        form.reset();
         this.closeUpd();
     }
 
@@ -264,7 +286,9 @@ export class PageService {
             errors.push('Поле описание должно быть заполнено');
         }
         if (formData.userId > 10 || formData.userId < 1) {
-            errors.push('Поле автор должно иметь значения в диапазоне от 1 до 10');
+            errors.push(
+                'Поле автор должно иметь значения в диапазоне от 1 до 10'
+            );
         }
         if (errors.length) {
             const errorEl = form.getElementsByClassName('formUpd-errors')[0];
@@ -289,11 +313,16 @@ export class PageService {
 
     _handleDelete(event) {
         this.card = event.target.parentElement.parentElement;
-        (localStorage[this.card.cardId] === '1') ? this.openDel() : this._handleRemove(event);
+        localStorage[this.card.cardId] === '1'
+            ? this.openDel()
+            : this._handleRemove(event);
     }
 
     _getLastId() {
-        let result = Array.prototype.slice.call(this.toDoList.children).reduce((a, b) => a.cardId > b.cardId ? a : b).cardId + 1;
+        let result =
+            Array.prototype.slice
+                .call(this.toDoList.children)
+                .reduce((a, b) => (a.cardId > b.cardId ? a : b)).cardId + 1;
         return result ? result : 1;
     }
 }
