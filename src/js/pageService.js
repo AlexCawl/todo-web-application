@@ -50,7 +50,7 @@ export class PageService {
         this.denyDelBtn = document.querySelector('.deny-btn');
         this.denyDelBtn.addEventListener('click', this.closeDel.bind(this));
 
-        this.initTheme()
+        this.initTheme();
     }
 
     addTodo(number, userId, title, description) {
@@ -252,7 +252,7 @@ export class PageService {
             oldTheme = 'dark-theme';
             newTheme = 'light-theme';
         }
-        this.setTheme(oldTheme, newTheme)
+        this.setTheme(oldTheme, newTheme);
     }
 
     changeTheme() {
@@ -264,7 +264,7 @@ export class PageService {
             oldTheme = 'light-theme';
             newTheme = 'dark-theme';
         }
-        this.setTheme(oldTheme, newTheme)
+        this.setTheme(oldTheme, newTheme);
     }
 
     _onUpdate(e) {
