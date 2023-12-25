@@ -2,6 +2,10 @@
 
 ## Made by: AlexCawl
 
-> The finished application is in the **GitHub** branch **origin/dev**
+> Node.JS >= 16v. required!
 
-> Node.JS >= 16v required!
+## Порядок запуска
+
+-   `npm install` - установка пакетов
+-   `npm run dev` - запуск приложения
+
