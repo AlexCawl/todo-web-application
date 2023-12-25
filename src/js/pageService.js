@@ -91,7 +91,7 @@ export class PageService {
         container.cardId = number;
         container.userId = userId;
         localStorage[container.cardId] = 0;
-        //------------------------------------------------------------------------------
+
         const header = document.createElement('div');
         header.classList.add('card__header');
 
@@ -123,12 +123,11 @@ export class PageService {
         header.append(numberStar);
         header.append(titleEl);
         header.append(btnDel);
-        //------------------------------------------------------------------------------
+
         const content = document.createElement('div');
         content.classList.add('card__description');
 
         content.append(document.createTextNode(description));
-        //------------------------------------------------------------------------------
         const footer = document.createElement('div');
         footer.classList.add('card__footer');
 
@@ -150,7 +149,7 @@ export class PageService {
 
         footer.append(authorEl);
         footer.append(btnUpd);
-        //------------------------------------------------------------------------------
+
         container.append(header);
         container.append(content);
         container.append(footer);
@@ -287,7 +286,6 @@ export class PageService {
             this.updateTodo(data.title, data.content, data.userId);
         });
 
-        //        form.reset();
         this.closeUpd();
     }
 

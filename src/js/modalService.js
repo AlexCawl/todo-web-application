@@ -22,7 +22,6 @@ export class ModalService {
     }
 
     _createSelect() {
-        const select = document.querySelectorAll('.authorSelect');
         document.querySelectorAll('.authorSelect').forEach((item) => {
             for (let i = 1; i < 11; i++) {
                 const option = document.createElement('option');
@@ -75,7 +74,6 @@ export class ModalService {
 
     _validateForm(form, formData) {
         const errors = [];
-        //вместо if используются отдельные функции-валидаторы
         if (!formData.title.length) {
             errors.push('Поле наименование должно быть заполнено');
         }
