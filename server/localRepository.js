@@ -3,19 +3,7 @@ export class LocalRepository {
     _idSequence = 2;
 
     constructor() {
-        this._todos = [
-            {
-                id: 1,
-                title: 'Сделать практику',
-                description: 'Сделать практику по dom и fetch',
-            },
-            {
-                id: 2,
-                title: 'Прочесть лекцию',
-                description:
-                    'Прочесть лекцию по dom promise fetch. А так же познакомиться с RegExp',
-            },
-        ];
+        this._todos = [];
     }
 
     create(data) {
