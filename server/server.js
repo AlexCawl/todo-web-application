@@ -1,9 +1,9 @@
 import http from 'http';
 import {Router} from "./router.js";
-import {Repository} from "./repository.js";
+import {LocalRepository} from "./localRepository.js";
 import {defaultErrorResponseHandler, defaultOkResponseHandler, getRequestDate} from "./helper.js";
 
-const todoRepository = new Repository();
+const todoRepository = new LocalRepository();
 const router = new Router();
 const server = http.createServer(async (req, res) => {
     try {

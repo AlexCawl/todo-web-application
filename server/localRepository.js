@@ -1,4 +1,4 @@
-export class Repository {
+export class LocalRepository {
     _todos;
     _idSequence = 2;
 
