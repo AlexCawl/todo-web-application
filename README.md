@@ -2,10 +2,10 @@
 
 ## Made by: AlexCawl
 
-> ВАЖНО! \
-> Node.JS >= 16 version
+> Node.JS >= 16v. required!
 
 ## Порядок запуска
 
 -   `npm install` - установка пакетов
 -   `npm run dev` - запуск приложения
+
