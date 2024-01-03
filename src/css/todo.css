@@ -1,13 +1,14 @@
 .card.light-theme {
     display: flex;
     flex-flow: column nowrap;
+    background: #FFFBFE;
     border: 1px solid #121212;
 }
 
 .card.dark-theme {
     display: flex;
+    background: #1C1B1F;
     flex-flow: column nowrap;
-
     border: 1px solid #f6f7f8;
 }
 
@@ -16,7 +17,6 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-
     padding: 8px 0;
     margin-bottom: 12px;
 }
@@ -51,7 +51,7 @@
 
 .card__update {
     font-size: 15px;
-    padding: 0 16px;
+    padding: 4px 16px 4px 16px;
     margin-right: 16px;
     margin-left: 16px;
 }
@@ -63,15 +63,15 @@
 }
 
 .star__button.light-theme {
-    background-color: #f6f7f8;
-    color: lightgray;
+    background-color: #EADDFF;
+    color: #939094;
     margin-right: 10px;
     transition: 0.3s;
 }
 
 .star__button.dark-theme {
-    background-color: #121212;
-    color: darkslategray;
+    background-color: #4A4458;
+    color: #939094;
     margin-right: 10px;
     transition: 0.3s;
 }
@@ -83,7 +83,7 @@
 
 .star__button.dark-theme:hover {
     transition: 0.3s;
-    color: #6e87e1;
+    color: orange;
 }
 
 .button__active.light-theme {
@@ -91,7 +91,7 @@
 }
 
 .button__active.dark-theme {
-    color: #6e87e1 !important;
+    color: orange !important;
 }
 
 .number__container {
